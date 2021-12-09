@@ -1,6 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FishingMiniGame : MonoBehaviour
 {
@@ -84,6 +85,14 @@ public class FishingMiniGame : MonoBehaviour
         Fish();
         Hook();
         ProgressCheck();
+
+        //win con: if 5 fish are caught (for later maybe with timer has not ended)
+        if (caughtFish == 5)
+        {
+            //then go to win mode
+            SceneManager.LoadScene(2);
+        }
+
     }
 
 
