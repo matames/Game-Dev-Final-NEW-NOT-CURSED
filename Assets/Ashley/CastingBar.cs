@@ -28,6 +28,7 @@ public class CastingBar : MonoBehaviour
     public AudioClip clinkSFX;
     public AudioClip lineCastWooshSplooshSFX;
     public AudioClip biteAlertSFX;
+    public AudioClip lineBrokeSFX;
     public AudioClip hitAlertSFX;
 
     void Start()
@@ -162,6 +163,9 @@ public class CastingBar : MonoBehaviour
 
         lineInWater = false;
         bite = false;
+
+        mySource.PlayOneShot(lineBrokeSFX);
+
         fishingGame.SetActive(false);
     }
 }

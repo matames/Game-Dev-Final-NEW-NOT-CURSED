@@ -53,6 +53,7 @@ public class FishingMiniGame : MonoBehaviour
     public AudioClip fishCaughtSFX;
     //public AudioClip fishPulledOutSFX; --> couldn't put this audio in since there isn't
     //a pause between when the fish has been caught and when it's stored in the inventory
+    public AudioClip fishLostSFX;
 
     private bool hasPlayed = false;
 
@@ -140,6 +141,8 @@ public class FishingMiniGame : MonoBehaviour
         pause = true;
         //fishingGame.SetActive(false);
         Debug.Log("YOU LOSE! NO FISH FOR YOU!!!");
+
+        mySource.PlayOneShot(fishLostSFX);
 
         lineTugSource.Stop();
     }

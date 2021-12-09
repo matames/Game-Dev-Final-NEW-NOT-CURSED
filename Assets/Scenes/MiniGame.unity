@@ -382,6 +382,7 @@ MonoBehaviour:
   clinkSFX: {fileID: 8300000, guid: d423a6b4c063941ebb7ebc8ea05ff119, type: 3}
   lineCastWooshSplooshSFX: {fileID: 8300000, guid: 44b2abe0096624d0b91cf798f5396f51, type: 3}
   biteAlertSFX: {fileID: 8300000, guid: d9943eb19a07946f09a94f6ac0ffe837, type: 3}
+  lineBrokeSFX: {fileID: 8300000, guid: 761a4d6de736549edb5c82f84444a1a3, type: 3}
   hitAlertSFX: {fileID: 8300000, guid: 3ec6798085e4c45bb81acbb35aed4a36, type: 3}
 --- !u!114 &99235162
 MonoBehaviour:
@@ -467,6 +468,7 @@ MonoBehaviour:
   mySource: {fileID: 99235160}
   playerOutOfBoundsSFX: {fileID: 8300000, guid: daae70996df8a4c5f98d1c169d37e778, type: 3}
   fishCaughtSFX: {fileID: 8300000, guid: 2845fbee3193a40629827b19e298731a, type: 3}
+  fishLostSFX: {fileID: 8300000, guid: 45fdeafc502ed4ee08fb00a8e53ef89d, type: 3}
 --- !u!1 &160570522
 GameObject:
   m_ObjectHideFlags: 0
