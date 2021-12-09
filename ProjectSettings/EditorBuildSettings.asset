@@ -6,15 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/MiniGame.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 5fbdf3c9f504f4b07a8e4dc57cfc1656
+  - enabled: 1
+    path: Assets/Scenes/MiniGame.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/WinMode.unity
+    guid: d7a89b3735b1b46898337334dfca2a04
+  - enabled: 1
+    path: Assets/Scenes/LoseMode.unity
+    guid: f2247737baa2f4fb9a839efd77741f10
   m_configObjects: {}
