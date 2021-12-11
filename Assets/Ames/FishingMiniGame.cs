@@ -115,6 +115,7 @@ public class FishingMiniGame : MonoBehaviour
 
         if (min < fishPosition && fishPosition < max)
         {
+            failTimer = 10f;
             hookProgress += hookPower * Time.deltaTime;
             hasPlayed = false;
 
