@@ -41,6 +41,7 @@ public class CastingBar : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && lineInWater && bite && !reeling)
         {
+            Debug.Log("Set fishing game active");
             reeling = true;
             fishingGame.SetActive(true);
             StopAllCoroutines(); //Stops the LineBreak timer
@@ -49,9 +50,13 @@ public class CastingBar : MonoBehaviour
 
         if (miniGame.caughtFish > 0)
         {
+            Debug.Log("Caught Fish = " + miniGame.caughtFish);
+
             reeling = false;
             lineInWater = false;
             bite = false;
+
+            //miniGame.pause = true;
 
             fishingGame.SetActive(false);
             miniGame.caughtFish = 0;
@@ -166,6 +171,6 @@ public class CastingBar : MonoBehaviour
 
         mySource.PlayOneShot(lineBrokeSFX);
 
-        fishingGame.SetActive(false);
+        //fishingGame.SetActive(false);
     }
 }

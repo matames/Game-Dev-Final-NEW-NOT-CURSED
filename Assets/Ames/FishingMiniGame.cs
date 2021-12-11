@@ -40,7 +40,7 @@ public class FishingMiniGame : MonoBehaviour
     [SerializeField] Transform progressBarContainer;
 
 
-    bool pause = false;
+    public bool pause = false;
     public static bool win = false;
 
     [SerializeField] float failTimer = 10f;
@@ -56,7 +56,9 @@ public class FishingMiniGame : MonoBehaviour
     //a pause between when the fish has been caught and when it's stored in the inventory
     public AudioClip fishLostSFX;
 
+    public int fishTotal = 0;
     private bool hasPlayed = false;
+
 
     // Start is called before the first frame update
 
@@ -82,12 +84,18 @@ public class FishingMiniGame : MonoBehaviour
     private void Update()
     {
         if (pause) { return; }
+        Debug.Log("before Fish() pause = " + pause);
+
         Fish();
+
+        Debug.Log("before Hook() pause = " + pause);
         Hook();
+
+        Debug.Log("before ProgressCheck() pause = " + pause);
         ProgressCheck();
 
         //win con: if 5 fish are caught (for later maybe with timer has not ended)
-        if (caughtFish == 5)
+        if (fishTotal == 5)
         {
             //then go to win mode
             SceneManager.LoadScene(2);
@@ -144,33 +152,45 @@ public class FishingMiniGame : MonoBehaviour
 
     public void Lose()
     {
+        Debug.Log("before losing pause = " + pause);
+
         win = false;
 
         caughtFish = 2;     // 2 = lose
-        pause = true;
+        //pause = true;
+
+        failTimer = 10f;
+
         //fishingGame.SetActive(false);
         Debug.Log("YOU LOSE! NO FISH FOR YOU!!!");
 
         mySource.PlayOneShot(fishLostSFX);
 
         lineTugSource.Stop();
+
+        Debug.Log("after losing pause = " + pause);
     }
 
 
     public void Win()
     {
+        Debug.Log("before winning pause = " + pause);
         win = true;
 
-        caughtFish = 1;
+        caughtFish = 1; // 1 = win
 
         hookProgress = 0;
 
-        // 1 = win
+        fishTotal++;
+
+        failTimer = 10f;
+
         //pause = true;
         //fishingGame.SetActive(false);
         Debug.Log("YOU WIN! FISH CAUGHT!");
 
         lineTugSource.Stop();
+        Debug.Log("after winning pause = " + pause);
     }
 
 

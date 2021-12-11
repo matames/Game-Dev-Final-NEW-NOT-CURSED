@@ -413,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &115976389
 Transform:
   m_ObjectHideFlags: 0
@@ -462,6 +462,7 @@ MonoBehaviour:
   hookProgressDegradationPower: 0.1
   hookSpriteRenderer: {fileID: 1310770804}
   progressBarContainer: {fileID: 1962610576}
+  pause: 0
   failTimer: 10
   caughtFish: 0
   lineTugSource: {fileID: 549983074}
@@ -469,6 +470,7 @@ MonoBehaviour:
   playerOutOfBoundsSFX: {fileID: 8300000, guid: daae70996df8a4c5f98d1c169d37e778, type: 3}
   fishCaughtSFX: {fileID: 8300000, guid: 2845fbee3193a40629827b19e298731a, type: 3}
   fishLostSFX: {fileID: 8300000, guid: 45fdeafc502ed4ee08fb00a8e53ef89d, type: 3}
+  fishTotal: 0
 --- !u!1 &160570522
 GameObject:
   m_ObjectHideFlags: 0
