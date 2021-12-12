@@ -135,9 +135,9 @@ GameObject:
   - component: {fileID: 99235156}
   - component: {fileID: 99235155}
   - component: {fileID: 99235158}
+  - component: {fileID: 99235161}
   - component: {fileID: 99235159}
   - component: {fileID: 99235160}
-  - component: {fileID: 99235161}
   - component: {fileID: 99235162}
   - component: {fileID: 99235163}
   m_Layer: 0
@@ -245,7 +245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   animator: {fileID: 99235155}
-  myBody: {fileID: 0}
+  myBody: {fileID: 99235159}
 --- !u!50 &99235159
 Rigidbody2D:
   serializedVersion: 4
@@ -377,9 +377,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageProgressUp: {fileID: 1518582070}
   fishStrength: 0
+  bite: 0
   fishingGame: {fileID: 115976388}
   castBarVisible: {fileID: 1221441822}
   miniGame: {fileID: 115976390}
+  animator: {fileID: 99235155}
   mySource: {fileID: 99235160}
   castBarSFX: {fileID: 8300000, guid: d613e513fa0454b3e805f44a5d705415, type: 3}
   clinkSFX: {fileID: 8300000, guid: d423a6b4c063941ebb7ebc8ea05ff119, type: 3}

@@ -21,9 +21,11 @@ public class CastingBar : MonoBehaviour
 
     public GameObject fishingGame;
     public GameObject castBarVisible;   // object for the casting progress bar
-    public GameObject exclaimationPoint;
+    //public GameObject exclaimationPoint;
 
     public FishingMiniGame miniGame;
+
+    public Animator animator;
 
     public AudioSource mySource;
     public AudioClip castBarSFX;
@@ -44,11 +46,10 @@ public class CastingBar : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && lineInWater && bite && !reeling)
         {
-            Debug.Log("Set fishing game active");
-            reeling = true;
-            fishingGame.SetActive(true);
+            animator.SetBool("hit", true);
             StopAllCoroutines(); //Stops the LineBreak timer
-            mySource.PlayOneShot(hitAlertSFX);
+            StartCoroutine(StartReeling(4));
+            mySource.PlayOneShot(hitAlertSFX);           
         }
 
         if (miniGame.caughtFish > 0)
@@ -56,10 +57,11 @@ public class CastingBar : MonoBehaviour
             Debug.Log("Caught Fish = " + miniGame.caughtFish);
 
             reeling = false;
+            animator.SetBool("reeling", false);
             lineInWater = false;
             bite = false;
 
-            //miniGame.pause = true;
+            animator.SetBool("didWin", true);
 
             fishingGame.SetActive(false);
             miniGame.caughtFish = 0;
@@ -118,7 +120,11 @@ public class CastingBar : MonoBehaviour
     public void StartProgress()
     {
         fishStrength = 0;
+        animator.SetInteger("castPower", 0);
         isCasting = true;
+        animator.SetBool("casting", true);
+        animator.SetBool("didWin", false);
+        animator.SetBool("didWin", false);
         progressAmt = 0.0f;
         isDirectionRight = true;
     }
@@ -126,22 +132,26 @@ public class CastingBar : MonoBehaviour
     public void EndProgress()
     {
         isCasting = false;
+        animator.SetBool("casting", true);
 
         if (progressAmt < 0.3f)
         {
 
             Debug.Log("Weak Casting");
             fishStrength = 0;
+            animator.SetInteger("castPower", 1);
         }
         else if (progressAmt > 0.3f && progressAmt < 0.7f)
         {
             Debug.Log("Average Casting");
             fishStrength = 1;
+            animator.SetInteger("castPower", 2);
         }
         else if (progressAmt > 0.7f)
         {
             Debug.Log("Strong Casting");
             fishStrength = 2;
+            animator.SetInteger("castPower", 3);
         }
 
         CastWait();
@@ -155,21 +165,29 @@ public class CastingBar : MonoBehaviour
         mySource.PlayOneShot(lineCastWooshSplooshSFX);
     }
 
+    private IEnumerator StartReeling(float maxWaitTime)
+    {
+        yield return new WaitForSeconds(Random.Range(maxWaitTime * 0.25f, maxWaitTime));
+
+        animator.SetBool("hit", false);
+        Debug.Log("Set fishing game active");
+        reeling = true;
+        animator.SetBool("reeling", true);
+        fishingGame.SetActive(true);
+    }
     private IEnumerator WaitForBite(float maxWaitTime)
     {
         yield return new WaitForSeconds(Random.Range(maxWaitTime * 0.25f, maxWaitTime)); //Wait between 25% of maxWaitTime and the maxWaitTime
         Debug.Log("Hit!"); // animation for alert here
 
-        //thoughtBubbles.GetComponent<Animator>().SetTrigger("Alert"); //Show the alert thoughtbubble
-
         bite = true;
-
+        /*
         if (bite)
         {
             GameObject newHIT = Instantiate(exclaimationPoint, transform.position, transform.rotation);
             newHIT.transform.SetParent(gameObject.transform);
             newHIT.transform.localPosition = new Vector3(0.0f, 15.0f);
-        }
+        }*/
 
         mySource.PlayOneShot(biteAlertSFX);
 
