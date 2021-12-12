@@ -58,6 +58,10 @@ public class FishingMiniGame : MonoBehaviour
 
     public int fishTotal = 0;
     private bool hasPlayed = false;
+    
+
+    
+
 
 
     // Start is called before the first frame update
@@ -178,6 +182,8 @@ public class FishingMiniGame : MonoBehaviour
         Debug.Log("before winning pause = " + pause);
         win = true;
 
+        GameObject.Find("player").GetComponent<Player>().OnWinGame();
+
         caughtFish = 1; // 1 = win
 
         hookProgress = 0;
@@ -185,7 +191,7 @@ public class FishingMiniGame : MonoBehaviour
         fishTotal++;
 
         failTimer = 10f;
-
+        
         //pause = true;
         //fishingGame.SetActive(false);
         Debug.Log("YOU WIN! FISH CAUGHT!");

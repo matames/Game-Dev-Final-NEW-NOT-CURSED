@@ -13,6 +13,7 @@ public class CastingBar : MonoBehaviour
     private bool isDirectionRight = true;
     private float progressAmt = 0.0f;
     private float progressSpeed = 0.8f;
+    public float fishStrength = 0; // dictates which fish you will catch (if you catch it)
 
     private bool bite = false;      // when player gets a bit
     private bool lineInWater = false;       // when waiting for a bite
@@ -33,6 +34,7 @@ public class CastingBar : MonoBehaviour
 
     void Start()
     {
+        fishStrength = 0;
         fishingGame.SetActive(false);
     }
 
@@ -114,6 +116,7 @@ public class CastingBar : MonoBehaviour
 
     public void StartProgress()
     {
+        fishStrength = 0;
         isCasting = true;
         progressAmt = 0.0f;
         isDirectionRight = true;
@@ -125,15 +128,19 @@ public class CastingBar : MonoBehaviour
 
         if (progressAmt < 0.3f)
         {
+
             Debug.Log("Weak Casting");
+            fishStrength = 0;
         }
         else if (progressAmt > 0.3f && progressAmt < 0.7f)
         {
             Debug.Log("Average Casting");
+            fishStrength = 1;
         }
         else if (progressAmt > 0.7f)
         {
             Debug.Log("Strong Casting");
+            fishStrength = 2;
         }
 
         CastWait();

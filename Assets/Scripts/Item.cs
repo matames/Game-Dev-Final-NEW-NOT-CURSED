@@ -13,4 +13,18 @@ public class Item
 
     public ItemType itemType;
     public int amount;
+
+    public Sprite GetSprite()
+    {
+        switch (itemType)
+        {
+            default:
+                case ItemType.BasicFish: return ItemAssets.Instance.BasicFishSprite;
+                case ItemType.EpicFish: return ItemAssets.Instance.EpicFishSprite;
+                case ItemType.WeakFish: return ItemAssets.Instance.WeakFishSprite;
 }
+}
+
+
+}
+
