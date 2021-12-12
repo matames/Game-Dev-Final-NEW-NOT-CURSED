@@ -10,10 +10,15 @@ public class movement : MonoBehaviour
 
     SpriteRenderer myRenderer;
 
+    public Rigidbody2D myBody;
+
     // Start is called before the first frame update
     void Start()
     {
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+        myBody = gameObject.GetComponent<Rigidbody2D>();
+        myBody.gravityScale = 0;
     }
 
     // Update is called once per frame
@@ -69,4 +74,5 @@ public class movement : MonoBehaviour
 
         transform.position = pos;
     }
+
 }
