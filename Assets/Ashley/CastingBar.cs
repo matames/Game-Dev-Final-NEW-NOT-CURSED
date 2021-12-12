@@ -21,7 +21,7 @@ public class CastingBar : MonoBehaviour
 
     public GameObject fishingGame;
     public GameObject castBarVisible;   // object for the casting progress bar
-    //public GameObject exclaimationPoint;
+    public GameObject exclaimationPoint;
 
     public FishingMiniGame miniGame;
 
@@ -46,10 +46,13 @@ public class CastingBar : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && lineInWater && bite && !reeling)
         {
+            Debug.Log("Deactivate ExcPoint");
+            exclaimationPoint.SetActive(false); // Deactivates exc point
+
             animator.SetBool("hit", true);
             StopAllCoroutines(); //Stops the LineBreak timer
             StartCoroutine(StartReeling(4));
-            mySource.PlayOneShot(hitAlertSFX);           
+            mySource.PlayOneShot(hitAlertSFX);
         }
 
         if (miniGame.caughtFish > 0)
@@ -181,13 +184,16 @@ public class CastingBar : MonoBehaviour
         Debug.Log("Hit!"); // animation for alert here
 
         bite = true;
-        /*
+        
         if (bite)
         {
-            GameObject newHIT = Instantiate(exclaimationPoint, transform.position, transform.rotation);
-            newHIT.transform.SetParent(gameObject.transform);
-            newHIT.transform.localPosition = new Vector3(0.0f, 15.0f);
-        }*/
+            //GameObject newHIT = Instantiate(exclaimationPoint, transform.position, transform.rotation);
+            //newHIT.transform.SetParent(gameObject.transform);
+            //newHIT.transform.localPosition = new Vector3(0.3f, 10f);
+
+            Debug.Log("Activate ExcPoint");
+            exclaimationPoint.SetActive(true); // activate exclamation point childed under player
+        }
 
         mySource.PlayOneShot(biteAlertSFX);
 
@@ -203,6 +209,9 @@ public class CastingBar : MonoBehaviour
         bite = false;
 
         mySource.PlayOneShot(lineBrokeSFX);
+
+        Debug.Log("Deactivate ExcPoint");
+        exclaimationPoint.SetActive(false); // if player fails to get fish, deactivate exc point
 
         //fishingGame.SetActive(false);
     }
