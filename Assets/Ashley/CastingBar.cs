@@ -15,12 +15,13 @@ public class CastingBar : MonoBehaviour
     private float progressSpeed = 0.8f;
     public float fishStrength = 0; // dictates which fish you will catch (if you catch it)
 
-    private bool bite = false;      // when player gets a bit
+    public bool bite = false;      // when player gets a bit
     private bool lineInWater = false;       // when waiting for a bite
     private bool reeling = false;           // when playing the mini game
 
     public GameObject fishingGame;
     public GameObject castBarVisible;   // object for the casting progress bar
+    public GameObject exclaimationPoint;
 
     public FishingMiniGame miniGame;
 
@@ -162,6 +163,13 @@ public class CastingBar : MonoBehaviour
         //thoughtBubbles.GetComponent<Animator>().SetTrigger("Alert"); //Show the alert thoughtbubble
 
         bite = true;
+
+        if (bite)
+        {
+            GameObject newHIT = Instantiate(exclaimationPoint, transform.position, transform.rotation);
+            newHIT.transform.SetParent(gameObject.transform);
+            newHIT.transform.localPosition = new Vector3(0.0f, 15.0f);
+        }
 
         mySource.PlayOneShot(biteAlertSFX);
 
