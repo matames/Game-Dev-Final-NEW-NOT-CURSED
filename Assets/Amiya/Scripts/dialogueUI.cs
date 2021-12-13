@@ -25,6 +25,7 @@ public class dialogueUI : MonoBehaviour
         ShowDialogue(testDialogue);
     }
 
+    // on switch
     public void ShowDialogue(dialogueObject dialogueObject)
     {
         isOpen = true;
@@ -33,13 +34,14 @@ public class dialogueUI : MonoBehaviour
         StartCoroutine(StepThroughDialogue(dialogueObject));    // coroutine for going through the dialogue
     }
 
+    //going through all the parts of the chosen dialogue obj
     private IEnumerator StepThroughDialogue(dialogueObject dialogueObject)
     {
         for (int i = 0; i < dialogueObject.Dialogue.Length; i++)
         {
             string dialogue = dialogueObject.Dialogue[i];
 
-            yield return typewriterEffect.Run(dialogue, textLabel);
+            yield return typewriterEffect.Run(dialogue, textLabel);     // using the typewriter effect
 
             if (i == dialogueObject.Dialogue.Length - 1) //&& dialogueObject.HasResponses)
             {
@@ -58,10 +60,11 @@ public class dialogueUI : MonoBehaviour
         {
             CloseDialogue();
         }*/
-
-
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        CloseDialogue();
     }
 
+    // off switch
     private void CloseDialogue()
     {
         isOpen = false;

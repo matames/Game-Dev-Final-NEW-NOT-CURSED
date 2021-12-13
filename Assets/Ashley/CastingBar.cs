@@ -24,6 +24,7 @@ public class CastingBar : MonoBehaviour
     public GameObject exclaimationPoint;
 
     public FishingMiniGame miniGame;
+    public dialogueUI DialogueUI;       // here to reference if the dialogue box is open
 
     public Animator animator;
 
@@ -74,18 +75,18 @@ public class CastingBar : MonoBehaviour
             //}
         }
         
-        if (Input.GetMouseButtonDown(0) && !lineInWater && !reeling)
+        if (Input.GetMouseButtonDown(0) && !lineInWater && !reeling && !DialogueUI.dialogueOn)
         {
             StartProgress();
             mySource.PlayOneShot(castBarSFX);
         }
-        else if (Input.GetMouseButtonUp(0) && !lineInWater && !reeling)
+        else if (Input.GetMouseButtonUp(0) && !lineInWater && !reeling && !DialogueUI.dialogueOn)
         {
             EndProgress();
             mySource.PlayOneShot(clinkSFX);
         }
 
-        if (isCasting && !lineInWater && !reeling)
+        if (isCasting && !lineInWater && !reeling && !DialogueUI.dialogueOn)
         {
             CastingActive();
             castBarVisible.SetActive(true);

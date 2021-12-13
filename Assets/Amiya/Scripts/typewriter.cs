@@ -7,6 +7,7 @@ public class typewriter : MonoBehaviour
 {
     [SerializeField] private float typewriterSpeed = 50f;
 
+    // to walk through all the chosen dialogue from TMP
     public Coroutine Run(string textToType, TMP_Text textLabel)
     {
         return StartCoroutine(TypeText(textToType, textLabel));
