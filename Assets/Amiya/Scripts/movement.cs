@@ -12,6 +12,9 @@ public class movement : MonoBehaviour
 
     public Rigidbody2D myBody;
 
+    public AudioSource walkingAudioSource; //audiosource that carries the walking sfx
+    public bool isWalking = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,8 @@ public class movement : MonoBehaviour
             animator.SetBool("side", true);
             animator.SetBool("back", false);
             animator.SetBool("walking", true);
+
+            isWalking = true;
         }
         else if (Input.GetKey(KeyCode.A))
         {
@@ -45,10 +50,14 @@ public class movement : MonoBehaviour
             animator.SetBool("side", true);
             animator.SetBool("back", false);
             animator.SetBool("walking", true);
+
+            isWalking = true;
         }
         else
         {
             animator.SetBool("walking", false);
+
+            isWalking = false;
         }
 
         if (Input.GetKey(KeyCode.W))
@@ -58,6 +67,8 @@ public class movement : MonoBehaviour
             animator.SetBool("back", true);
             animator.SetBool("side", false);
             animator.SetBool("walking", true);
+
+            isWalking = true;
         }
         else if (Input.GetKey(KeyCode.S))
         {
@@ -66,13 +77,25 @@ public class movement : MonoBehaviour
             animator.SetBool("back", false);
             animator.SetBool("side", false);
             animator.SetBool("walking", true);
+
+            isWalking = true;
         }
         else if(!animator.GetBool("walking"))       // if player is not walking to the side
         {
             animator.SetBool("walking", false);
+
+            isWalking = false;
         }
 
         transform.position = pos;
-    }
 
+        if (isWalking && !walkingAudioSource.isPlaying)
+        {
+            walkingAudioSource.Play();
+        }
+        if (!isWalking)
+        {
+            walkingAudioSource.Stop();
+        }
+    }
 }

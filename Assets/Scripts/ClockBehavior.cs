@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class ClockBehavior : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class ClockBehavior : MonoBehaviour
     //calling fishing mini game script to use its variables
     public FishingMiniGame fishingGame;
 
+    //counts down minutes from 10 (or whatever is assigned)
+    public int minuteCountDown = 10;
+
+    public TextMeshProUGUI timeText;
 
     private void Awake()
     {
@@ -36,8 +41,8 @@ public class ClockBehavior : MonoBehaviour
 
         clockHandTransform.eulerAngles = new Vector3(0, 0, -oneRoundNormalized * rotationDegreesPerDay * hoursPerDay);
 
-        //Old timer (way too fast): if oneRound is around ~3 minutes real time (if oneRound = 0.129)
-        //if oneRound is around ~10 minutes real time (if oneRound = 0.43)
+        //Old timer (way too fast): one revolution is ~15 second real time (if oneRound = 0.129)
+        //if oneRound = 0.43 --> around 45 seconds total
         if (oneRound > 0.43)
         {
             //if player has 5 fish or more
@@ -53,5 +58,17 @@ public class ClockBehavior : MonoBehaviour
                 SceneManager.LoadScene(3);
             }
         }
+
+        //timeText.text = string.Format(minuteCountDown);
+
     }
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.gameObject.tag == "roundComplete")
+    //    {
+    //        minuteCountDown--;
+    //        Debug.Log("Minutes remaining = " + minuteCountDown);
+    //    }
+    //}
 }
