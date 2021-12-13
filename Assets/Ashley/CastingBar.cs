@@ -59,15 +59,19 @@ public class CastingBar : MonoBehaviour
         {
             Debug.Log("Caught Fish = " + miniGame.caughtFish);
 
-            reeling = false;
-            animator.SetBool("reeling", false);
             lineInWater = false;
             bite = false;
 
             animator.SetBool("didWin", true);
 
             fishingGame.SetActive(false);
-            miniGame.caughtFish = 0;
+
+            //if (Input.GetMouseButtonDown(0))
+            //{
+                reeling = false;
+                animator.SetBool("reeling", false);
+                miniGame.caughtFish = 0;
+            //}
         }
         
         if (Input.GetMouseButtonDown(0) && !lineInWater && !reeling)
@@ -126,7 +130,6 @@ public class CastingBar : MonoBehaviour
         animator.SetInteger("castPower", 0);
         isCasting = true;
         animator.SetBool("casting", true);
-        animator.SetBool("didWin", false);
         animator.SetBool("didWin", false);
         progressAmt = 0.0f;
         isDirectionRight = true;
