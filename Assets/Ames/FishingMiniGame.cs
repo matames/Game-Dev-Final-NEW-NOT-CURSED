@@ -1,7 +1,7 @@
  using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class FishingMiniGame : MonoBehaviour
 {
@@ -88,22 +88,23 @@ public class FishingMiniGame : MonoBehaviour
     private void Update()
     {
         if (pause) { return; }
-        Debug.Log("before Fish() pause = " + pause);
+        //Debug.Log("before Fish() pause = " + pause);
 
         Fish();
 
-        Debug.Log("before Hook() pause = " + pause);
+        //Debug.Log("before Hook() pause = " + pause);
         Hook();
 
-        Debug.Log("before ProgressCheck() pause = " + pause);
+        //Debug.Log("before ProgressCheck() pause = " + pause);
         ProgressCheck();
 
+        //Update 12/12: win cons are now checked in ClockBehavior script
         //win con: if 5 fish are caught (for later maybe with timer has not ended)
-        if (fishTotal == 5)
-        {
-            //then go to win mode
-            SceneManager.LoadScene(2);
-        }
+        //if (fishTotal == 5)
+        //{
+        //    //then go to win mode
+        //    SceneManager.LoadScene(2);
+        //}
 
     }
 
@@ -157,7 +158,7 @@ public class FishingMiniGame : MonoBehaviour
 
     public void Lose()
     {
-        Debug.Log("before losing pause = " + pause);
+        //Debug.Log("before losing pause = " + pause);
 
         win = false;
 
@@ -173,13 +174,13 @@ public class FishingMiniGame : MonoBehaviour
 
         lineTugSource.Stop();
 
-        Debug.Log("after losing pause = " + pause);
+        //Debug.Log("after losing pause = " + pause);
     }
 
 
     public void Win()
     {
-        Debug.Log("before winning pause = " + pause);
+        //Debug.Log("before winning pause = " + pause);
         win = true;
 
         GameObject.Find("player").GetComponent<Player>().OnWinGame();
@@ -197,7 +198,7 @@ public class FishingMiniGame : MonoBehaviour
         Debug.Log("YOU WIN! FISH CAUGHT!");
 
         lineTugSource.Stop();
-        Debug.Log("after winning pause = " + pause);
+        //Debug.Log("after winning pause = " + pause);
     }
 
 
@@ -205,7 +206,7 @@ public class FishingMiniGame : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            hookPullVelocity += hookPullPower * Time.deltaTime;
+            hookPullVelocity += hookPullPower * Time.deltaTime * 2.5f; //the 2.5f added there is just for tuning/game feel
             lineTugSource.Play();
         }
 

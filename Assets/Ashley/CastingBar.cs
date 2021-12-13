@@ -51,7 +51,7 @@ public class CastingBar : MonoBehaviour
 
             animator.SetBool("hit", true);
             StopAllCoroutines(); //Stops the LineBreak timer
-            StartCoroutine(StartReeling(4));
+            StartCoroutine(StartReeling(2));
             mySource.PlayOneShot(hitAlertSFX);
         }
 
