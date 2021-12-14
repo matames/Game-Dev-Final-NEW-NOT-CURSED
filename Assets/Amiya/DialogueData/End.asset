@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18548b8f75bcf3a48ad0ac35811922bf, type: 3}
+  m_Name: End
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Done with your fishing ay?
+  - Well what are you waiting for show me your catch!
+  responses:
+  - responseText: '[Give Billy your fish]'
+    DialogueObject: {fileID: 11400000, guid: b63f05cac85fc7640a592ab064d31cfb, type: 2}
+  - responseText: '[Don''t give Billy your fish]'
+    DialogueObject: {fileID: 11400000, guid: 31eda98968bb1b9489bf08fa7a4f346f, type: 2}

@@ -12,6 +12,12 @@ public class movement : MonoBehaviour
 
     public Rigidbody2D myBody;
 
+    [SerializeField] private dialogueUI DialogueUI;
+
+    public dialogueUI dialogueUI => DialogueUI;
+
+    public IInteractable Interactable { get; set; }
+
     public AudioSource walkingAudioSource; //audiosource that carries the walking sfx
     public bool isWalking = false;
 
@@ -28,64 +34,76 @@ public class movement : MonoBehaviour
     void Update()
     {
         Vector3 pos = transform.position;
-
-        if (Input.GetKey(KeyCode.D))
+        
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            pos.x += speed * Time.deltaTime;
-
-            myRenderer.flipX = false;
-
-            animator.SetBool("side", true);
-            animator.SetBool("back", false);
-            animator.SetBool("walking", true);
-
-            isWalking = true;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            pos.x -= speed * Time.deltaTime;
-
-            myRenderer.flipX = true;
-
-            animator.SetBool("side", true);
-            animator.SetBool("back", false);
-            animator.SetBool("walking", true);
-
-            isWalking = true;
-        }
-        else
-        {
-            animator.SetBool("walking", false);
-
-            isWalking = false;
+            if (Interactable != null)
+            {
+                Interactable.Interact(this);
+            }
         }
 
-        if (Input.GetKey(KeyCode.W))
+        if (!DialogueUI.dialogueOn)
         {
-            pos.y += speed * Time.deltaTime;
+            if (Input.GetKey(KeyCode.D))
+            {
+                pos.x += speed * Time.deltaTime;
 
-            animator.SetBool("back", true);
-            animator.SetBool("side", false);
-            animator.SetBool("walking", true);
+                myRenderer.flipX = false;
 
-            isWalking = true;
+                animator.SetBool("side", true);
+                animator.SetBool("back", false);
+                animator.SetBool("walking", true);
+
+                isWalking = true;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                pos.x -= speed * Time.deltaTime;
+
+                myRenderer.flipX = true;
+
+                animator.SetBool("side", true);
+                animator.SetBool("back", false);
+                animator.SetBool("walking", true);
+
+                isWalking = true;
+            }
+            else
+            {
+                animator.SetBool("walking", false);
+
+                isWalking = false;
+            }
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                pos.y += speed * Time.deltaTime;
+
+                animator.SetBool("back", true);
+                animator.SetBool("side", false);
+                animator.SetBool("walking", true);
+
+                isWalking = true;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                pos.y -= speed * Time.deltaTime;
+
+                animator.SetBool("back", false);
+                animator.SetBool("side", false);
+                animator.SetBool("walking", true);
+
+                isWalking = true;
+            }
+            else if(!animator.GetBool("walking"))       // if player is not walking to the side
+            {
+                animator.SetBool("walking", false);
+                    
+                isWalking = false;
+            }
         }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            pos.y -= speed * Time.deltaTime;
 
-            animator.SetBool("back", false);
-            animator.SetBool("side", false);
-            animator.SetBool("walking", true);
-
-            isWalking = true;
-        }
-        else if(!animator.GetBool("walking"))       // if player is not walking to the side
-        {
-            animator.SetBool("walking", false);
-
-            isWalking = false;
-        }
 
         transform.position = pos;
 

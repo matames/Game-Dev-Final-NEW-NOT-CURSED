@@ -22,7 +22,7 @@ public class dialogueUI : MonoBehaviour
         //ResponseHandler = GetComponent<responseHandler>();
 
         CloseDialogue();
-        ShowDialogue(testDialogue);
+        //ShowDialogue(testDialogue);
     }
 
     // on switch
@@ -60,6 +60,7 @@ public class dialogueUI : MonoBehaviour
         {
             CloseDialogue();
         }*/
+        
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         CloseDialogue();
     }
