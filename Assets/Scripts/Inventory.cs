@@ -13,9 +13,7 @@ public class Inventory
     {
         itemList = new List<Item>();
 
-        AddItem(new Item { itemType = Item.ItemType.BasicFish, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.EpicFish, amount = 1 });
-        AddItem(new Item { itemType = Item.ItemType.WeakFish, amount = 1 });
+        
 
         Debug.Log(itemList.Count);
     }
