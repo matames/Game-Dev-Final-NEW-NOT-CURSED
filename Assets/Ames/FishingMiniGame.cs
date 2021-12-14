@@ -60,9 +60,9 @@ public class FishingMiniGame : MonoBehaviour
 
     public int fishTotal = 0;
     private bool hasPlayed = false;
-    
 
-    
+
+    public CastingBar castingBarScript;
 
 
 
@@ -181,6 +181,8 @@ public class FishingMiniGame : MonoBehaviour
         lineTugSource.Stop();
 
         //Debug.Log("after losing pause = " + pause);
+
+        castingBarScript.canMove = true;
     }
 
 
@@ -205,11 +207,15 @@ public class FishingMiniGame : MonoBehaviour
 
         lineTugSource.Stop();
         //Debug.Log("after winning pause = " + pause);
+
+        castingBarScript.canMove = true;
     }
 
 
     void Hook()
     {
+        castingBarScript.canMove = false;
+
         if (Input.GetMouseButton(0))
         {
             hookPullVelocity += hookPullPower * Time.deltaTime * 2.5f; //the 2.5f added there is just for tuning/game feel
@@ -238,6 +244,8 @@ public class FishingMiniGame : MonoBehaviour
     }
      void Fish()
     {
+        castingBarScript.canMove = false;
+
         fishTimer -= Time.deltaTime;
         if (fishTimer < 0f)
         {

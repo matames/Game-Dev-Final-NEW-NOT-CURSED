@@ -36,6 +36,10 @@ public class CastingBar : MonoBehaviour
     public AudioClip lineBrokeSFX;
     public AudioClip hitAlertSFX;
 
+    public movement movementScript;
+
+    public bool canMove = true;
+
     void Start()
     {
         fishStrength = 0;
@@ -45,7 +49,7 @@ public class CastingBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) && lineInWater && bite && !reeling)
+        if (Input.GetMouseButtonDown(0) && lineInWater && bite && !reeling && movementScript.nearWater)
         {
             Debug.Log("Deactivate ExcPoint");
             exclaimationPoint.SetActive(false); // Deactivates exc point
@@ -54,6 +58,8 @@ public class CastingBar : MonoBehaviour
             StopAllCoroutines(); //Stops the LineBreak timer
             StartCoroutine(StartReeling(2));
             mySource.PlayOneShot(hitAlertSFX);
+
+            canMove = false;
         }
 
         if (miniGame.caughtFish > 0)
@@ -73,33 +79,41 @@ public class CastingBar : MonoBehaviour
                 animator.SetBool("reeling", false);
                 miniGame.caughtFish = 0;
             //}
+
+            canMove = true;
         }
-        
-        if (Input.GetMouseButtonDown(0) && !lineInWater && !reeling && !DialogueUI.dialogueOn)
+
+        if (Input.GetMouseButtonDown(0) && !lineInWater && !reeling && !DialogueUI.dialogueOn && movementScript.nearWater)
         {
             StartProgress();
             mySource.PlayOneShot(castBarSFX);
+            canMove = false;
         }
-        else if (Input.GetMouseButtonUp(0) && !lineInWater && !reeling && !DialogueUI.dialogueOn)
+        else if (Input.GetMouseButtonUp(0) && !lineInWater && !reeling && !DialogueUI.dialogueOn && movementScript.nearWater)
         {
             EndProgress();
             mySource.PlayOneShot(clinkSFX);
+            canMove = false;
         }
 
-        if (isCasting && !lineInWater && !reeling && !DialogueUI.dialogueOn)
+        if (isCasting && !lineInWater && !reeling && !DialogueUI.dialogueOn && movementScript.nearWater)
         {
             CastingActive();
             castBarVisible.SetActive(true);
+            canMove = false;
         }
         else
         {
             castBarVisible.SetActive(false);
+            canMove = true;
         }
     }
 
     // when first throwing in the line
     void CastingActive()
     {
+        canMove = false;
+
         if (isDirectionRight)
         {
             progressAmt += Time.deltaTime * progressSpeed;
@@ -162,6 +176,7 @@ public class CastingBar : MonoBehaviour
         }
 
         CastWait();
+        canMove = false;
     }
 
     // waiting for a bite while the line is in the water
@@ -170,6 +185,8 @@ public class CastingBar : MonoBehaviour
         lineInWater = true;
         StartCoroutine(WaitForBite(5));
         mySource.PlayOneShot(lineCastWooshSplooshSFX);
+
+        canMove = false;
     }
 
     private IEnumerator StartReeling(float maxWaitTime)
@@ -181,6 +198,8 @@ public class CastingBar : MonoBehaviour
         reeling = true;
         animator.SetBool("reeling", true);
         fishingGame.SetActive(true);
+
+        canMove = false;
     }
     private IEnumerator WaitForBite(float maxWaitTime)
     {
@@ -202,6 +221,8 @@ public class CastingBar : MonoBehaviour
         mySource.PlayOneShot(biteAlertSFX);
 
         StartCoroutine(LineBreak(2)); // if no clickings in 2 seconds break the line
+
+        canMove = false;
     }
 
     private IEnumerator LineBreak(float lineBreakTime)
@@ -218,5 +239,7 @@ public class CastingBar : MonoBehaviour
         exclaimationPoint.SetActive(false); // if player fails to get fish, deactivate exc point
 
         //fishingGame.SetActive(false);
+
+        canMove = true;
     }
 }

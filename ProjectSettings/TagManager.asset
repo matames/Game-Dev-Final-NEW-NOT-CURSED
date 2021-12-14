@@ -6,6 +6,7 @@ TagManager:
   tags:
   - water
   - roundComplete
+  - tree
   layers:
   - Default
   - TransparentFX
