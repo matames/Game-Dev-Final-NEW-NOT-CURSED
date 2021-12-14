@@ -634,6 +634,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: didWin
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: reeling
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -6617470628937221763}
   m_Solo: 0
@@ -711,6 +714,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 2
     m_ConditionEvent: didWin
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: reeling
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8736439309679708154}
