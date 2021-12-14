@@ -36,39 +36,29 @@ public class ClockBehavior : MonoBehaviour
         //Debug.Log("oneRound = " + oneRound);
 
         float oneRoundNormalized = oneRound % 1f;
+        //float rotationDegreesPerDay = 360f;
+        //float hoursPerDay = 24f;
         float rotationDegreesPerDay = 360f;
-        float hoursPerDay = 24f;
+        //1.5f = 0.6744 = 4min
+        float hoursPerDay = 1.5f; //6f makes one rotation a full minute, 2f makes it over 3min, 1f makes it 7min(0.98860)
 
         clockHandTransform.eulerAngles = new Vector3(0, 0, -oneRoundNormalized * rotationDegreesPerDay * hoursPerDay);
 
-        //Old timer (way too fast): one revolution is ~15 second real time (if oneRound = 0.129)
-        //if oneRound = 0.43 --> around 45 seconds total
-        if (oneRound > 0.43)
+        if (oneRound > 0.674)
         {
-            //if player has 5 fish or more
-            if (fishingGame.fishTotal >= 1) //set to 1 for debugging/playtesting purposes - MUST CHANGE FOR FINAL BUILD
+            //if player has 10 fish or more
+            if (fishingGame.fishTotal >= 10) //set to 1 for debugging/playtesting purposes - MUST CHANGE FOR FINAL BUILD
             {
                 //go to WinScreen
                 SceneManager.LoadScene(2);
             }
-            //if player has less than five fish
-            if (fishingGame.fishTotal == 0)
+            //if player has less than 10 fish
+            if (fishingGame.fishTotal < 10)
             {
                 //go to LoseScreen
                 SceneManager.LoadScene(3);
             }
         }
 
-        //timeText.text = string.Format(minuteCountDown);
-
     }
-
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.gameObject.tag == "roundComplete")
-    //    {
-    //        minuteCountDown--;
-    //        Debug.Log("Minutes remaining = " + minuteCountDown);
-    //    }
-    //}
 }

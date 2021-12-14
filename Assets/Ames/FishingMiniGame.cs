@@ -18,8 +18,10 @@ public class FishingMiniGame : MonoBehaviour
     float fishTimer;
     [SerializeField] float timerMultiplicator = 3f;
 
-    float fishSpeed;
-    [SerializeField] float smoothMotion = 1f;
+    public float fishSpeed;
+    //[SerializeField] float smoothMotion = 1f;
+    //first number I changed to make the fish move faster (increase difficulty)
+    [SerializeField] float smoothMotion = 0.01f;
 
 
     [SerializeField] Transform hook;
@@ -105,6 +107,10 @@ public class FishingMiniGame : MonoBehaviour
         //    //then go to win mode
         //    SceneManager.LoadScene(2);
         //}
+
+
+        //second thing I changed to increase difficulty: increased fish speed
+        fishSpeed = fishSpeed * 1.1f;
 
     }
 
