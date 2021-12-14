@@ -19,9 +19,9 @@ public class FishingMiniGame : MonoBehaviour
     [SerializeField] float timerMultiplicator = 3f;
 
     public float fishSpeed;
-    //[SerializeField] float smoothMotion = 1f;
+    [SerializeField] float smoothMotion = 1f;
     //first number I changed to make the fish move faster (increase difficulty)
-    [SerializeField] float smoothMotion = 0.01f;
+    //[SerializeField] float smoothMotion = 0.01f;
 
 
     [SerializeField] Transform hook;
@@ -110,7 +110,7 @@ public class FishingMiniGame : MonoBehaviour
 
 
         //second thing I changed to increase difficulty: increased fish speed
-        fishSpeed = fishSpeed * 1.1f;
+        //fishSpeed = fishSpeed * 1.1f;
 
     }
 
